@@ -4,15 +4,20 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   jobApplications: [],
+  singleJobApplication: null,
 };
 
 const reducer = (state = initialState, action) => {
-  console.log(action.payload);
   switch (action.type) {
     case types.LOAD_JOB_APPLICATIONS:
       return {
         ...state,
         jobApplications: action.payload,
+      };
+    case types.GET_SINGLE_JOB_APPLICATION:
+      return {
+        ...state,
+        singleJobApplication: action.payload,
       };
     case types.ADD_JOB_APPLICATION:
       return {

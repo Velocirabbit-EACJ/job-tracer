@@ -14,6 +14,20 @@ router.get('/', jobApplicationController.getJobApplications, (req, res) => {
 });
 
 /**
+ * @route GET /api/jobApplication/:id
+ * @desc GET all job applications
+ * @access Public
+ */
+
+router.get(
+  '/jobApplication/:id',
+  jobApplicationController.getSingleJobApplication,
+  (req, res) => {
+    res.status(200).json(res.locals.singleJobApplication);
+  }
+);
+
+/**
  * @route POST /api/jobApplication
  * @desc CREATE new job application
  * @access Public
