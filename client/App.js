@@ -19,8 +19,11 @@ function App() {
         <Layout>
           <Switch>
             <Route path="/" exact component={Dashboard} />
-            {/* TODO: dynamic route */}
-            <Route path="/jobApplication" component={JobApplication} />
+            <Route
+              path="/jobApplication/:id"
+              exact
+              component={JobApplication}
+            />
           </Switch>
         </Layout>
       </ChakraProvider>
