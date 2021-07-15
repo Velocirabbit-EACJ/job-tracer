@@ -1,38 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import JobApplicationList from './components/JobApplicationList';
+import React, { useEffect } from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import theme from './theme';
+import Layout from './components/Layout';
+import Dashboard from './Containers/Dashboard';
+import JobApplication from './components/JobApplication';
 import store from './store';
-import { loadJobApplications, addJobApplication } from './actions/actions';
-import CreateJobApplicationModal from './components/modals/CreateJobApplicationModal';
-import './main.css';
+import { loadJobApplications } from './actions/actions';
 
-const mapStateToProps = (state) => ({
-  jobApplications: state.jobApplications.jobApplications,
-});
-
-const App = (props) => {
-  const [show, setShow] = useState(false);
+function App() {
   useEffect(() => {
     store.dispatch(loadJobApplications());
   }, []);
 
   return (
-    <div className="container">
-      <button
-        className="btn btn-add"
-        type="button"
-        onClick={() => setShow(true)}
-      >
-        Create
-      </button>
-      <CreateJobApplicationModal
-        onClose={() => setShow(false)}
-        show={show}
-        addJobApplication={addJobApplication}
-      />
-      <JobApplicationList jobApplications={props.jobApplications} />
-    </div>
+    <Router>
+      <ChakraProvider theme={theme}>
+        <Layout>
+          <Switch>
+            <Route path="/" exact component={Dashboard} />
+            {/* TODO: dynamic route */}
+            <Route path="/jobApplication" component={JobApplication} />
+          </Switch>
+        </Layout>
+      </ChakraProvider>
+    </Router>
   );
-};
-
-export default connect(mapStateToProps, null)(App);
+}
+export default App;

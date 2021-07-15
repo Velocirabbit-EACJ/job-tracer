@@ -9,6 +9,7 @@ export const loadJobApplications = () => (dispatch) => {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       dispatch({
         type: types.LOAD_JOB_APPLICATIONS,
         payload: data,
@@ -21,7 +22,6 @@ export const loadJobApplications = () => (dispatch) => {
 };
 
 export const addJobApplication = (data) => (dispatch) => {
-  console.log(data);
   fetch(`api/jobApplication`, {
     method: 'POST',
     headers: {
@@ -60,7 +60,20 @@ export const deleteJobApplication = (id) => (dispatch) => {
     });
 };
 
-export const editApp = () => ({
-  type: types.EDIT_JOB_APPLICATION,
-  payload: 'editApp payload placeholder',
-});
+// export const editJobApplication = (data) => (dispatch) => {
+//   fetch(`api/jobApplicaiton/?id = ${id}`, {
+//     method: 'PATCH',
+//     headers: {
+//       'Content-Type': 'Application/JSON',
+//     },
+//     .then(() => {
+//       dispatch({
+//         type: 'EDIT_JOB_APPLICATION',
+//         payload: id
+//       })
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     })
+//   })
+// }
