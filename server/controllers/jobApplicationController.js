@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 // import the jobApp Model
 const db = require('../models/jobApplicationModels');
 
@@ -22,6 +23,29 @@ jobApplicationController.getJobApplications = (req, res, next) => {
     .catch((err) => {
       return next({
         log: 'Express error handler caught error in jobApplicationController.getJobApplications',
+        status: 400,
+        message: { err },
+      });
+    });
+};
+
+// get single job application
+jobApplicationController.getSingleJobApplication = (req, res, next) => {
+  const { id } = req.params;
+  const queryStr = `
+    SELECT * FROM
+      applications
+    WHERE 
+      id = $1`;
+
+  db.query(queryStr, [id])
+    .then((data) => {
+      res.locals.singleJobApplication = data.rows[0];
+      return next();
+    })
+    .catch((err) => {
+      return next({
+        log: 'Express error handler caught error in jobApplicationController.deleteJobApplication',
         status: 400,
         message: { err },
       });
@@ -147,7 +171,6 @@ jobApplicationController.deleteJobApplicationById = (req, res, next) => {
   // get id from req query
   const { id } = req.query;
 
-  console.log(id);
   // make query string
 
   const queryStr = `
