@@ -71,6 +71,7 @@ jobApplicationController.createJobApplication = (req, res, next) => {
 
   db.query(queryStr, jobApplicationValues)
     .then(() => {
+      // return result back to frontend
       return next();
     })
     .catch((err) => {
