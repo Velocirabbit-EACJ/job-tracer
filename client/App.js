@@ -3,8 +3,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import theme from './theme';
 import Layout from './components/Layout';
-import Dashboard from './Containers/Dashboard';
-import JobApplication from './components/JobApplication';
+import Dashboard from './containers/Dashboard';
+import JobApplication from './containers/JobApplication';
 import store from './store';
 import { loadJobApplications } from './actions/actions';
 
@@ -19,8 +19,11 @@ function App() {
         <Layout>
           <Switch>
             <Route path="/" exact component={Dashboard} />
-            {/* TODO: dynamic route */}
-            <Route path="/jobApplication" component={JobApplication} />
+            <Route
+              path="/jobApplication/:id"
+              exact
+              component={JobApplication}
+            />
           </Switch>
         </Layout>
       </ChakraProvider>

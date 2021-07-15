@@ -9,9 +9,27 @@ export const loadJobApplications = () => (dispatch) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       dispatch({
         type: types.LOAD_JOB_APPLICATIONS,
+        payload: data,
+      });
+    })
+    .catch((err) => {
+      // dispatch errors here later...
+      console.log(err);
+    });
+};
+export const getSingleJobApplication = (id) => (dispatch) => {
+  fetch(`api/jobApplication/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'Application/JSON',
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      dispatch({
+        type: types.GET_SINGLE_JOB_APPLICATION,
         payload: data,
       });
     })
