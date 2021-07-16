@@ -127,5 +127,4 @@ describe('JobApplications reducer', () => {
     //   expect(marketList[0]).toBe(state.marketList[0]);
     // });
   });
-
 });
