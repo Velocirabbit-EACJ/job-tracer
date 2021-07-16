@@ -11,7 +11,7 @@ describe('JobApplications reducer', () => {
   });
 
   // check for default state
-  describe('default state', () => {
+  xdescribe('default state', () => {
     it('should return a default state when given an undefined input', () => {
       expect(subject(undefined, { type: undefined })).toEqual(state);
     });
@@ -110,20 +110,20 @@ describe('JobApplications reducer', () => {
   //     };
   //   });
 
-  //   // it('decreases length of the job applications array', () => {
-  //   //   const expectedJobListLength = state.jobApplication.length;
-  //   //   const { jobApplications } = subject(state, action);
-  //   //   expect(marketList[1]).toEqual(expectedMarket);
-  //   // });
+  // it('decreases length of the job applications array', () => {
+  //   const expectedJobListLength = state.jobApplication.length;
+  //   const { jobApplications } = subject(state, action);
+  //   expect(marketList[1]).toEqual(expectedMarket);
+  // });
 
-  //   // it('includes a marketList not strictly equal to the original', () => {
-  //   //   const { marketList } = subject(state, action);
-  //   //   expect(marketList).not.toBe(state.marketList);
-  //   // });
+  // it('includes a marketList not strictly equal to the original', () => {
+  //   const { marketList } = subject(state, action);
+  //   expect(marketList).not.toBe(state.marketList);
+  // });
 
-  //   // it('does not mutate or duplicate other markets in marketList', () => {
-  //   //   const { marketList } = subject(state, action);
-  //   //   expect(marketList[0]).toBe(state.marketList[0]);
-  //   // });
+  // it('does not mutate or duplicate other markets in marketList', () => {
+  //   const { marketList } = subject(state, action);
+  //   expect(marketList[0]).toBe(state.marketList[0]);
+  // });
   // });
 });
