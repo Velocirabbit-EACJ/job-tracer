@@ -7,6 +7,7 @@ describe('JobApplications reducer', () => {
   beforeEach(() => {
     state = {
       jobApplications: [],
+      singleJobApplication: null,
     };
   });
 
@@ -63,7 +64,7 @@ describe('JobApplications reducer', () => {
       expect(subject(state, action)).not.toBe(state);
     });
 
-    it('includes a jobApplication not strictly equal to the original', () => {
+    it('includes a jobApplication list not strictly equal to the original', () => {
       const oldJobApplicationsList = state.marketList;
       const { jobApplications } = subject(state, action);
       expect(jobApplications).not.toBe(oldJobApplicationsList);
@@ -71,59 +72,59 @@ describe('JobApplications reducer', () => {
   });
 
   // Delete job Applications
-  // describe('DELETE_JOB_APPLICATION', () => {
-  //   let action;
+  describe('DELETE_JOB_APPLICATION', () => {
+    let action;
 
-  //   beforeEach(() => {
-  //     state = {
-  //       jobApplications: [
-  //         {
-  //           company_name: 'Redux Test To Delete',
-  //           description: 'Test Delete',
-  //           favorite: false,
-  //           id: 10,
-  //           job_title: 'Redux Test',
-  //           notes: 'Test',
-  //           post_source: 'friend',
-  //           salary: 9000,
-  //           status_date: '2021-07-15T07:00:00.000Z',
-  //           status_name: 'applied',
-  //         },
-  //         {
-  //           company_name: 'Redux Test',
-  //           description: 'Test',
-  //           favorite: false,
-  //           id: 3,
-  //           job_title: 'Redux Test',
-  //           notes: 'Test',
-  //           post_source: 'friend',
-  //           salary: 9000,
-  //           status_date: '2021-07-15T07:00:00.000Z',
-  //           status_name: 'applied',
-  //         },
-  //       ],
-  //     };
+    beforeEach(() => {
+      state = {
+        jobApplications: [
+          {
+            company_name: 'Redux Test To Delete',
+            description: 'Test Delete',
+            favorite: false,
+            id: 10,
+            job_title: 'Redux Test',
+            notes: 'Test',
+            post_source: 'friend',
+            salary: 9000,
+            status_date: '2021-07-15T07:00:00.000Z',
+            status_name: 'applied',
+          },
+          {
+            company_name: 'Redux Test',
+            description: 'Test',
+            favorite: false,
+            id: 3,
+            job_title: 'Redux Test',
+            notes: 'Test',
+            post_source: 'friend',
+            salary: 9000,
+            status_date: '2021-07-15T07:00:00.000Z',
+            status_name: 'applied',
+          },
+        ],
+      };
 
-  //     action = {
-  //       type: 'DELETE_JOB_APPLICATION',
-  //       payload: 10,
-  //     };
-  //   });
+      action = {
+        type: 'DELETE_JOB_APPLICATION',
+        payload: 10,
+      };
+    });
 
-  //   // it('decreases length of the job applications array', () => {
-  //   //   const expectedJobListLength = state.jobApplication.length;
-  //   //   const { jobApplications } = subject(state, action);
-  //   //   expect(marketList[1]).toEqual(expectedMarket);
-  //   // });
+    it('decreases length of the job applications array', () => {
+      const expectedJobListLength = state.jobApplications.length - 1;
+      const { jobApplications } = subject(state, action);
+      expect(jobApplications.length).toEqual(expectedJobListLength);
+    });
 
-  //   // it('includes a marketList not strictly equal to the original', () => {
-  //   //   const { marketList } = subject(state, action);
-  //   //   expect(marketList).not.toBe(state.marketList);
-  //   // });
+    // it('includes a marketList not strictly equal to the original', () => {
+    //   const { marketList } = subject(state, action);
+    //   expect(marketList).not.toBe(state.marketList);
+    // });
 
-  //   // it('does not mutate or duplicate other markets in marketList', () => {
-  //   //   const { marketList } = subject(state, action);
-  //   //   expect(marketList[0]).toBe(state.marketList[0]);
-  //   // });
-  // });
+    // it('does not mutate or duplicate other markets in marketList', () => {
+    //   const { marketList } = subject(state, action);
+    //   expect(marketList[0]).toBe(state.marketList[0]);
+    // });
+  });
 });
