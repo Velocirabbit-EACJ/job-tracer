@@ -1,34 +1,91 @@
 import React from 'react';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { BiDollarCircle } from 'react-icons/bi';
+import {
+  BsCheckAll,
+  BsWatch,
+  BsFileEarmarkSpreadsheet,
+  BsCaretRightFill,
+} from 'react-icons/bs';
 
-export default function JobDetails() {
+export default function JobDetails({ singleJob }) {
   return (
-    <div>
-      <Box bg="grey" w="100%" p={4} color="black">
-        <Text>Job Title</Text>
-      </Box>
-      <Box bg="grey" w="100%" p={4} color="black">
-        Company Name
-      </Box>
-      <Flex direction="row" justify="flex-start">
-        <Box bg="grey" w="100%" p={4} color="black">
-          Salary
-        </Box>
-        <Box bg="grey" w="100%" p={4} color="black">
-          Status
-        </Box>
-        <Box bg="grey" w="100%" p={4} color="black">
-          Post Source
-        </Box>
-      </Flex>
-      <Flex>
-        <Box bg="grey" w="100%" p={4} color="black">
-          Created
-        </Box>
-        <Box bg="grey" w="100%" p={4} color="black">
-          Thursday July 15, 2021
-        </Box>
-      </Flex>
-    </div>
+    singleJob && (
+      <div>
+        <Flex w="100%" p={2} color="white" fontWeight="bold">
+          <Text fontSize="4xl">{singleJob.job_title}</Text>
+          {singleJob.favorite ? <FaHeart color="red" /> : <FaRegHeart />}
+        </Flex>
+
+        <Flex w="100%" p={4} color="white" fontWeight="bold">
+          <Text fontSize="2xl"> Company: {singleJob.company_name}</Text>
+        </Flex>
+        <Flex direction="row" justify="flex-start">
+          <Flex
+            w="100%"
+            p={4}
+            color="white"
+            align="center"
+            borderTop="4px solid white"
+          >
+            <BiDollarCircle size={40} />
+            <Text fontSize="l" ml={3}>
+              {singleJob.salary}
+            </Text>
+          </Flex>
+          <Flex
+            w="100%"
+            p={4}
+            color="white"
+            align="center"
+            justify="center"
+            borderTop="4px solid white"
+          >
+            <BsCheckAll size={40} />
+            <Text as="i" fontsize="l">
+              {singleJob.status_name}
+            </Text>
+          </Flex>
+          <Flex
+            borderBottom="1px solid grey"
+            borderTop="4px solid white"
+            w="100%"
+            p={4}
+            color="white"
+            align="center"
+            justify="center"
+          >
+            <BsCaretRightFill size={40} />
+            <Text> Post Source {singleJob.post_source}</Text>
+          </Flex>
+        </Flex>
+        <Flex>
+          <Flex
+            borderBottom="4px solid white"
+            borderTop="4px solid white"
+            w="100%"
+            p={4}
+            color="white"
+          >
+            <BsWatch size={40} />
+            <Text ml={3}>{singleJob.status_date}</Text>
+          </Flex>
+          <Flex
+            borderBottom="4px solid white"
+            borderTop="4px solid white"
+            w="100%"
+            p={4}
+            color="white"
+            fontsize="l"
+            align="center"
+            justify="center"
+          >
+            <BsFileEarmarkSpreadsheet size={40} />
+            <Text fontsize="xl"> Thursday July 15, 2021</Text>
+          </Flex>
+        </Flex>
+      </div>
+    )
   );
 }
