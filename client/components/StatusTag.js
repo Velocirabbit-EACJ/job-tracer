@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tag } from '@chakra-ui/react';
+import PropTypes from 'prop-types';
 
 export default function StatusTag({ status }) {
   let color;
@@ -20,3 +21,7 @@ export default function StatusTag({ status }) {
     </Tag>
   );
 }
+
+StatusTag.propTypes = {
+  status: PropTypes.string.isRequired,
+};
