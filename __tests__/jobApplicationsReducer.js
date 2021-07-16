@@ -12,7 +12,7 @@ describe('JobApplications reducer', () => {
   });
 
   // check for default state
-  describe('default state', () => {
+  xdescribe('default state', () => {
     it('should return a default state when given an undefined input', () => {
       expect(subject(undefined, { type: undefined })).toEqual(state);
     });
@@ -127,4 +127,5 @@ describe('JobApplications reducer', () => {
     //   expect(marketList[0]).toBe(state.marketList[0]);
     // });
   });
+
 });
