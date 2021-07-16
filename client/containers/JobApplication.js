@@ -24,9 +24,9 @@ function JobApplication({ getSingleJob, singleJobApplication }) {
   }, [id]);
 
   return (
-    <Box border="1px solid grey" w="100%">
+    <Box>
       <Flex direction="column">
-        <JobDetails />
+        <JobDetails singleJob={singleJobApplication} />
         <JobTabs />
       </Flex>
     </Box>
